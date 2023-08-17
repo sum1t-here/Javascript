@@ -27,3 +27,52 @@ console.log(b.slice(2)); // llo
 console.log(b.replace('Hello', 'World')); // World
 console.log(b.concat(c)); // HelloWorld
 console.log(d.trim());
+
+// Problem
+
+// You want to verify that a variable is defined, is a string, and is not empty before you use it.
+
+// Solution:
+
+// If you want to make sure that your variable is a string (not just a variable that can be converted to a string), you use this test:
+
+let myString = 'Hello, world!';
+let emptyString = '';
+let nonString = 123;
+
+if (typeof myString === 'string') {
+  console.log(' string ');
+} else {
+  console.log(' not a string ');
+} // string
+
+if (typeof emptyString === 'string') {
+  console.log(' string ');
+} else {
+  console.log(' not a string ');
+} // string
+
+if (typeof nonString === 'string') {
+  console.log(' string ');
+} else {
+  console.log(' not a string ');
+} //  not a string
+
+// If you want to check that you have a nonempty string (not the zero-length string ''), you can tighten your verification like this:
+if (typeof myString === 'string' && myString.length > 0) {
+  console.log('non empty string');
+} else {
+  console.log(' empty string');
+} // empty string
+
+if (typeof emptyString === 'string' && emptyString.length > 0) {
+  console.log('non empty string');
+} else {
+  console.log(' empty string');
+} // empty string
+
+// if (typeof nonString === 'string' && nonString.length > 0) {
+//   console.log('non empty string');
+// } else {
+//   console.log(' empty string');
+// }
