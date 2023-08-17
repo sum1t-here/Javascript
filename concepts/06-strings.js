@@ -76,3 +76,21 @@ if (typeof emptyString === 'string' && emptyString.length > 0) {
 // } else {
 //   console.log(' empty string');
 // }
+
+let str1 = 'hello';
+
+let str2 = 'world';
+
+console.log(str1 + str2); // helloworld
+
+console.log('1' + 2); // 12
+console.log(1 + '2'); // 12
+console.log('1' + 2 + 2); // 122
+console.log(1 + 2 + '2'); // 32
+
+console.log(+true); // 1 (to be incremented but not possible so its type is converted)
+// console.log(true+); error
+
+let counter = 100;
+console.log(counter++); // 100 log then increment to 101
+console.log(++counter); // 102 incremented and then log
