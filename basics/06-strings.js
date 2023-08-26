@@ -94,3 +94,13 @@ console.log(+true); // 1 (to be incremented but not possible so its type is conv
 let counter = 100;
 console.log(counter++); // 100 log then increment to 101
 console.log(++counter); // 102 incremented and then log
+
+const url = 'https://sumit.com/sumit%20mazumdar';
+console.log(url.replace('%20', '-')); // https://sumit.com/sumit-mazumdar
+console.log(url.includes('SumitMazumdar')); // false
+
+const gameName = new String('Contra');
+console.log(gameName.split('-')); // [ 'Contra' ]
+console.log(gameName.split('o')); // [ 'C', 'ntra' ]
+console.log(gameName.charAt(2)); // n
+console.log(gameName.indexOf('t')); // 3
