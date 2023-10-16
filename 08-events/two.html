@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Learning JS</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+  </body>
+  <script>
+    const sumit = function () {
+      console.log('Sumit');
+    };
+
+    const changeText = function () {
+      document.querySelector('h1').innerHTML = 'Best JS series';
+    };
+
+    const change = setTimeout(sumit, 2000);
+    const change2 = setTimeout(changeText, 2000);
+
+    // clearTimeout(change2);
+
+    // document.querySelector('#stop').addEventListener('click', function () {
+    //   clearTimeout(change2);
+    //   console.log('STOPPED');
+    // });
+
+    const data = function (str) {
+      console.log(str, Date.now());
+    };
+
+    // const intervalId = setInterval(data, 1000, 'hi');
+
+    let intervalId;
+
+    document.querySelector('#start').addEventListener('click', function () {
+      intervalId = setInterval(data, 1000, 'haha');
+    });
+    // const clearInterval = clearInterval(intervalId);
+    document.querySelector('#stop').addEventListener('click', function () {
+      clearInterval(intervalId);
+      console.log('Interval Stopped');
+    });
+  </script>
+</html>
