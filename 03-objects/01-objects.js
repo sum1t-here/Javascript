@@ -32,7 +32,7 @@ jsUser.email = 'sumit@faang.com';
 
 console.log(jsUser);
 // {
-//     name: 'Hitesh',
+//     name: 'Sumit',
 //     'full name': 'Sumit Mazumdar',
 //     age: '21',
 //     location: 'Assam',
