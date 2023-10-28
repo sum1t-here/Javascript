@@ -5,6 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
+  <style>
+    .profile {
+      background: blueviolet;
+      border-radius: 30px;
+      width: 500px;
+      display: flex;
+    }
+    #avatar img {
+      height: 200px;
+      margin: 30px 0px 20px 28px;
+      border-radius: 20px;
+    }
+
+    #followers p {
+      font-weight: bold;
+      margin: 55px 0px 10px 55px;
+    }
+
+    #following p {
+      font-weight: bold;
+      margin: 30px 0px 5px 55px;
+    }
+
+    #id {
+      margin: 10px 0px 0px 20px;
+    }
+  </style>
   <body style="background-color: #b22e2e">
     0 UNSENT Client has been created. open() not called yet.
     <br />
@@ -16,6 +43,15 @@
     3 LOADING Downloading; responseText holds partial data.
     <br />
     4 DONE The operation is complete.
+
+    <div class="profile">
+      <div id="avatar"></div>
+      <div class="details">
+        <div id="id"></div>
+        <div id="followers"></div>
+        <div id="following"></div>
+      </div>
+    </div>
   </body>
   <script>
     const requestUrl = 'https://api.github.com/users/sum1t-here';
@@ -26,7 +62,20 @@
       if (xhr.readyState === 4) {
         const data = JSON.parse(this.responseText);
         console.log(typeof data);
+        console.log(data);
         console.log(data.followers);
+
+        const avatar = document.getElementById('avatar');
+        avatar.innerHTML = `<img src="https://avatars.githubusercontent.com/u/126807055?v=4" >`;
+
+        const id = document.getElementById('id');
+        id.innerHTML = `<h3> Username: ${data.login} `;
+
+        const followers = document.getElementById('followers');
+        followers.innerHTML = `<p>Followers: ${data.followers}</p>`;
+
+        const following = document.getElementById('following');
+        following.innerHTML = `<p>Following: ${data.following}</p>`;
       }
     };
     xhr.send();
