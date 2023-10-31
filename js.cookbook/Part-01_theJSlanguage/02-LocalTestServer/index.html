@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Setting up a Local Test Server</title>
+  </head>
+  <body>
+    <p>This is the index page</p>
+    <script>
+      if (window.location.protocol === 'file:') {
+        console.log('Running as local file!');
+      } else if (window.location.host.startsWith('localhost')) {
+        console.log('Running on a local server');
+      } else {
+        console.log('Running on a remote web server');
+      }
+    </script>
+  </body>
+</html>

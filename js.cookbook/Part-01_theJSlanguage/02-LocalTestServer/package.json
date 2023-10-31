@@ -1,0 +1,15 @@
+{
+  "name": "02-localtestserver",
+  "version": "1.0.0",
+  "description": "Two simple, reliable choices are the http-server and lite- server packages that you can install through npm. We use lite-server here, because it adds a live update feature that automatically refreshes the page in the browser when you save changed code in your editor.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "lite-server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
