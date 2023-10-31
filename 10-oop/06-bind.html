@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>Button clicked</button>
+  </body>
+  <script>
+    class React {
+      constructor() {
+        // Constructor method for the "React" class
+        this.library = 'React'; // Assign the string 'React' to the "library" property
+        this.server = 'https://localhost:300'; // Assign a server URL to the "server" property
+        // Requirement: Add a click event listener to the button
+        document
+          .querySelector('button') // Select the button element
+          .addEventListener('click', this.handleClick.bind(this)); // Attach a click event listener and bind it to the "handleClick" method
+      }
+      handleClick() {
+        // Define the "handleClick" method
+        console.log('Button Clicked'); // Output a message to the console when the button is clicked
+        console.log(this); //Output the value of "this" to the console (which will refer to the instance of the "React" class)
+      }
+    }
+
+    const app = new React();
+  </script>
+</html>
+
+<!-- this.handleClick.bind(this) is used to ensure that the this keyword inside the event listener (handleClick method) refers to the correct object, specifically the instance of the React class. -->
+<!-- Here's why bind is used and what it does:
+
+Maintaining the Correct Context: JavaScript uses a dynamic context for the this keyword. In event listeners like the one you have, this will typically refer to the DOM element that triggered the event (in this case, the <button> element). To ensure that this inside the handleClick method still points to the React instance, you use bind(this).
+
+Creating a New Function: The bind method creates a new function that, when called, has its this value set to the provided value (in this case, the React instance). It doesn't immediately invoke the function; it returns a new function with the specified this context. -->
+
+<!-- when the button is clicked, the event listener triggers the handleClick method, and because of bind(this), this inside handleClick remains bound to the React instance. This allows you to access the React instance's properties and methods within the event handler.
+
+Without bind(this), this would refer to the <button> element, which is not what you want in this context. By using bind(this), you ensure that the context of this is correctly set to the instance of the React class. -->
