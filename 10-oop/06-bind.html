@@ -6,27 +6,81 @@
     <title>Document</title>
   </head>
   <body>
-    <button>Button clicked</button>
+    <button>Button 1</button>
+    <button>Button 2</button>
+    <button>Button 3</button>
   </body>
   <script>
+    // Using bind in React was common in earlier versions (e.g., React class components)
+    // to address the issue of maintaining the correct context for event handlers.
     class React {
       constructor() {
         // Constructor method for the "React" class
         this.library = 'React'; // Assign the string 'React' to the "library" property
         this.server = 'https://localhost:300'; // Assign a server URL to the "server" property
-        // Requirement: Add a click event listener to the button
+        // Requirement: Add a click event listener to the button and reference of the button
         document
           .querySelector('button') // Select the button element
           .addEventListener('click', this.handleClick.bind(this)); // Attach a click event listener and bind it to the "handleClick" method
       }
       handleClick() {
         // Define the "handleClick" method
-        console.log('Button Clicked'); // Output a message to the console when the button is clicked
+        console.log('Button 1 Clicked'); // Output a message to the console when the button is clicked
+        console.log(this.server);
         console.log(this); //Output the value of "this" to the console (which will refer to the instance of the "React" class)
+        // when we don't use bind() we don't have reference of this.server but has reference of this
+      }
+    }
+
+    class React1 {
+      constructor() {
+        this.library = 'React';
+        this.server = 'https://localhost:300';
+
+        document
+          .querySelector('button')
+          .addEventListener('click', this.handleClick1.call(this));
+      }
+
+      handleClick1() {
+        console.log('Button 2 Clicked');
+        console.log(this.server);
+        console.log(this);
+      }
+    }
+
+    class React2 {
+      constructor() {
+        this.library = 'React';
+        this.server = 'https://localhost:300';
+
+        document
+          .querySelector('button')
+          .addEventListener('click', this.handleClick2);
+      }
+
+      handleClick2() {
+        console.log('Button 3 Clicked');
+        console.log(this.server);
+        console.log(this);
       }
     }
 
     const app = new React();
+    // Using .bind(this) in the Event Listener (as demonstrated by React class):
+    // This approach binds the handleClick method to the instance of the React class.
+    // It ensures that when the button is clicked, this inside the handleClick method refers to the React instance,
+    // allowing you to access properties like this.server.
+    const app2 = new React1();
+    // Using .call(this) in the Event Listener (as demonstrated by React1 class):
+    // This approach immediately invokes the handleClick1 method with the context (this) provided.
+    // In this case, you're not binding the method to the instance as in the previous example.
+    // The method is executed immediately before clicking any button, but it still allows you to access properties like this.server.
+    const app3 = new React2();
+    // Using this.handleClick2 in the Event Listener (as demonstrated by React2 class):
+    // This approach does not bind the method or immediately execute it with a specific context.
+    // When the button is clicked, the handleClick2 method is called, but it uses the default context,
+    //  which might not be what you expect. In this case, this will likely refer to the DOM element that triggered the event (the button).
   </script>
 </html>
 
@@ -40,3 +94,23 @@ Creating a New Function: The bind method creates a new function that, when calle
 <!-- when the button is clicked, the event listener triggers the handleClick method, and because of bind(this), this inside handleClick remains bound to the React instance. This allows you to access the React instance's properties and methods within the event handler.
 
 Without bind(this), this would refer to the <button> element, which is not what you want in this context. By using bind(this), you ensure that the context of this is correctly set to the instance of the React class. -->
+
+<!-- You can use the `call` method to change the context (the value of `this`) in a JavaScript function, just like `bind`. However, there's a key difference between `call` and `bind`:
+
+1. **`bind` returns a new function**: When you use `bind`, it creates a new function with the specified context (`this` value) and doesn't immediately invoke the function. You can call this new function later.
+
+2. **`call` immediately invokes the function**: When you use `call`, it changes the context and immediately invokes the function with the new `this` value.
+
+In your specific case, when setting up an event listener, it's common to use `bind` because you want to pass a function reference to the event listener, not the result of the function's execution. You want the function to be executed later when the event occurs.
+
+Using `call` in this context would not be suitable because it would immediately execute the function instead of waiting for the button click event. Here's an example of how you would use `call`, which is not appropriate for event listeners:
+
+```javascript
+document
+  .querySelector('button')
+  .addEventListener('click', this.handleClick.call(this));
+```
+
+With the above code, `this.handleClick.call(this)` would immediately execute `handleClick` with the provided context, not when the button is clicked.
+
+So, in your scenario, you should use `bind` to create a new function with the correct context that can be executed later when the button is clicked. -->
