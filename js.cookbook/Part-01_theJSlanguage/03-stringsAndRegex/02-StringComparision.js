@@ -106,3 +106,21 @@ console.log(newString); // Now is the place, this is the place
 
 // t\w{2}e : This translates into look for any sequence of characters beginning with t,
 //  ending with e, and containing two other alphanumeric characters
+
+// The g at the end of the regular expression is an additional detail called the global flag.
+// It indicates that you are searching the whole string for matches.
+// If you don’t include the g flag, you’ll receive an error when you call replaceAll()
+
+// Also this could be used
+
+// const regex = new RegExp('t\\w{2}e', 'g');
+// const newString = originalString.replaceAll(regex, 'place');
+
+// You might find that escaping backslashes is awkward or confusing in long,
+// complicated regular expressions. If so, you can get around the escaping
+// requirement with a template literal
+
+// Although String.raw is a method, it has no parentheses after it,
+// and it uses the specialized backtick syntax shown here.
+
+// const regex = new RegExp(String.raw`t\w{2}e`, 'g');
