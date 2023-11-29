@@ -61,3 +61,65 @@ console.log(sentence); // displays "the quick brown fox"
 
 var sentence = words.reduceRight(concat);
 console.log(sentence); // fox brown quick the
+
+/**
+ * Iterator function that returns a new array
+ */
+
+// map(): similar to forEach() but returns a new array
+
+function curve(grade) {
+  return (grade += 5);
+}
+var grades = [77, 65, 81, 92, 83];
+var newgrades = grades.map(curve);
+
+console.log(newgrades);
+// [ 82, 70, 86, 97, 88 ]
+
+function first(word) {
+  return word[0];
+}
+var words = ['for', 'your', 'information'];
+var acronym = words.map(first);
+
+console.log(acronym.join('-'));
+// f-y-i
+
+// filter(): The filter() function works similarly to every(),
+//  but instead of returning true if all the elements of an array
+// satisfy a Boolean function, the function returns a new array
+// consisting of those elements that satisfy the Boolean
+
+function IsEven(num) {
+  return num % 2 == 0;
+}
+
+function IsOdd(num) {
+  return num % 2 != 0;
+}
+
+var nums = [];
+for (var i = 0; i < 20; ++i) {
+  nums[i] = i + 1;
+}
+
+const Even = nums.filter(IsEven);
+console.log('Even numbers:');
+console.log(Even);
+
+// Even numbers:
+// [
+//    2,  4,  6,  8, 10,
+//   12, 14, 16, 18, 20
+// ]
+
+const Odd = nums.filter(IsOdd);
+console.log('Odd numbers:');
+console.log(Odd);
+
+// Odd numbers:
+// [
+//    1,  3,  5,  7,  9,
+//   11, 13, 15, 17, 19
+// ]
