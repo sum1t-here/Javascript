@@ -1,6 +1,6 @@
 // checking if an object is an array
 
-const object = ['Hulk', 'Thor', 'spiderman'];
+const object = ["Hulk", "Thor", "spiderman"];
 
 if (Array.isArray(object)) {
   // valid array
@@ -50,11 +50,41 @@ function areArraysEqual(arrayA, arrayB) {
   }
 }
 
-const fruitNamesA = ['apple', 'kumquat', 'grapefruit', 'kiwi'];
-const fruitNamesB = ['apple', 'kumquat', 'grapefruit', 'kiwi'];
-const fruitNamesC = ['avocado', 'squash', 'red pepper', 'cucumber'];
+const fruitNamesA = ["apple", "kumquat", "grapefruit", "kiwi"];
+const fruitNamesB = ["apple", "kumquat", "grapefruit", "kiwi"];
+const fruitNamesC = ["avocado", "squash", "red pepper", "cucumber"];
 
 console.log(areArraysEqual(fruitNamesA, fruitNamesB)); // true
 console.log(areArraysEqual(fruitNamesA, fruitNamesC)); // false
 
 console.log(areArraysEqual(fruitNamesA.sort(), fruitNamesB.sort())); // true
+
+const datesA = [new Date(2022, 8, 3)];
+const datesB = [new Date(2022, 8, 3)];
+
+console.log(areArraysEqual(datesA, datesB)); // false
+
+// These arrays don’t match because even though the underlying date content is the same,
+// the Date instances are different. (Or, to put it another way,
+// there are two separate Date objects that just happen to save the same information in them.)
+
+function areArraysEqual(arrayA, arrayB) {
+  if (!Array.isArray(arrayA) || !Array.isArray(arrayB)) {
+    return false;
+  } else if (arrayA === arrayB) {
+    return true;
+  } else if (arrayA.length !== arrayB) {
+    return false;
+  } else {
+    for (let i = 0; i < arrayA.length; ++i) {
+      // check for equal dates
+      if (arrayA[i] instanceof Date && arrayB[i] instanceof Date) {
+        if (arrayA[i].getTime() != arrayB.getTime()) return false;
+      } else {
+        // use normal strict equality
+        if (arrayA[i] != arrayB[i]) return false;
+      }
+    }
+    return true;
+  }
+}
