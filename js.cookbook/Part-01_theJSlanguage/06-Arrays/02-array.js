@@ -49,8 +49,8 @@ console.log(numbersCopy[4]); // 8
 // affects the original array:
 
 const originalObject = [
-  { name: "Pikachu", type: "Electric", attack: "ThunderTail", health: "100" },
-  { name: "Bulbasaur", type: "Grass", attack: "Razorblade", health: "99" },
+  { name: 'Pikachu', type: 'Electric', attack: 'ThunderTail', health: '100' },
+  { name: 'Bulbasaur', type: 'Grass', attack: 'Razorblade', health: '99' },
 ];
 
 const copiedObject = [...originalObject];
@@ -76,10 +76,35 @@ const evenAndOdds = [...even, ...odd];
 
 // copting a portion of the array
 
-const animals = ["Monkey", "Lion", "Tiger", "Cow", "Buffalo", "Deer"];
+const animals = ['Monkey', 'Lion', 'Tiger', 'Cow', 'Buffalo', 'Deer'];
 
 // from index 3 to 4
 
 const domestic = animals.slice(3, 5);
 console.log(domestic);
 // [ 'Cow', 'Buffalo' ]
+
+// exctracting array items that meets specific condition
+
+function startWithE(animal) {
+  return animal[0].toLowerCase === 'e';
+}
+
+const animals1 = [
+  'elephant',
+  'tiger',
+  'emu',
+  'zebra',
+  'cat',
+  'dog',
+  'eel',
+  'rabbit',
+  'goose',
+  'earwig',
+];
+const animalsE = animals1.filter((animal) => animal[0].toLowerCase() === 'e');
+console.log(animalsE);
+
+// Empyting an array
+
+//  set .length = 0
