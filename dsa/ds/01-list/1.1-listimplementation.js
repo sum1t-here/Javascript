@@ -10,21 +10,6 @@ class List {
     this.listSize = 0;
     this.pos = 0;
     this.dataStore = [];
-    this.clear = clear;
-    this.find = find;
-    this.toString = toString;
-    this.insert = insert;
-    this.append = append;
-    this.remove = remove;
-    this.front = front;
-    this.end = end;
-    this.prev = prev;
-    this.next = next;
-    this.length = length;
-    this.currPos = currPos;
-    this.moveTo = moveTo;
-    this.getElement = getElement;
-    this.contains = contains;
   }
   // Append: Adding an Element to a List
 
@@ -39,8 +24,8 @@ class List {
       if (this.dataStore[i] == element) {
         return i;
       }
-      return -1;
     }
+    return -1;
   }
 
   // Remove: Removing an Element from a List
@@ -75,4 +60,35 @@ class List {
       this.dataStore.splice(insertPos + 1, 0, element);
     }
   }
+
+  // Clear: Removing all elements from an list
+  clear() {
+    delete this.dataStore;
+    this.dataStorev = [];
+    this.listSize = this.pos = 0;
+  }
+
+  // Contains: To see if a particular element is present in an array
+  contains(element) {
+    for (let i = 0; i < this.dataStore.length; i++) {
+      if (element === this.dataStore[i]) {
+        return true;
+      }
+    }
+    return false;
+  }
 }
+
+const myList = new List();
+myList.append(1);
+myList.append(2);
+myList.append(3);
+
+console.log(myList.toString()); // Output: [1, 2, 3]
+console.log(myList.length()); // Output: 3
+console.log(myList.contains(2)); // Output: true
+console.log(myList.find(2)); // Output: 1
+myList.insert(4, 2);
+console.log(myList.toString()); // Output: [1, 2, 4, 3]
+myList.remove(2);
+console.log(myList.toString());
